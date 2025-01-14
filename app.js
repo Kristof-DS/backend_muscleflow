@@ -1,12 +1,13 @@
 import 'dotenv/config'
-import sql from './src/database.js'
 import express from 'express'
-
+import reglogRouter from './src/Register-login/router.js'
 
 const app = express()
 
-app.get('/test', (req, res) => {
-    res.send('Hello Jhonsons')
-})
+app.use(express.json())
+
+
+
+app.use('/api', reglogRouter)
 
 app.listen(process.env.PORT || 3000)
