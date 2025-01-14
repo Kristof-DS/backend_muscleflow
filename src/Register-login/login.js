@@ -17,11 +17,14 @@ const login = async (req, res) => {
         return res.status(403).json({ error: 'incorrect password' })
     }
     try {
-        const token = await sign({ username: user[0].username, userID: user[0].id_user, usermail: user[0].email }, process.env.SECRET_KEY)
-        return res.send({ token })
+        const token = jwt.sign({ username: user[0].username, userID: user[0].id_user, usermail: user[0].email }, process.env.SECRET_KEY)
+        return res.send({message:'Success', token })
     }
     catch (err) {
         console.log(err)
         return res.status(500).json({ error: 'Internal server error' })
     }
 }
+
+
+export default login

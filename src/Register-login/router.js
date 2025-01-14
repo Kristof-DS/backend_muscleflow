@@ -1,4 +1,6 @@
 import express from 'express'
+import login from './login.js'
+import register from './registration.js'
 
 const router = express.Router()
 
