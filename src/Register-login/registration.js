@@ -12,14 +12,16 @@ const register = async (req, res) => {
     const checkMail = await sql`SELECT * FROM users WHERE email = ${email}`
     const checkUsername = await sql`SELECT * FROM users WHERE username = ${username}`
 
-    if (email === checkMail) {
+   
+
+    if (checkMail[0]) {
         return res.status(409).json({ error: 'email is already in use' })
     }
 
-    if (checkUsername === username) {
+    if (checkUsername[0]) {
         return res.status(409).json({ error: 'username is already in use' })
     }
-
+    
     try {
         const hashedPassword = bcrypt.hashSync(password, 10)
         await sql`INSERT INTO users (email, password, username, date_of_birth, weight, height, gender) VALUES (${email}, ${hashedPassword},${username}, ${date_of_birth}, ${weight}, ${height}, ${gender})`
@@ -31,7 +33,11 @@ const register = async (req, res) => {
             usermail: user[0].email
         }
 
-        const token = jwt.sign(payload, process.env.SECRET_KEY)
+        const secretKey = process.env.JWT_SECRET  //Live server
+        
+        //const secretKey = process.env.SECRET_KEY    //Local server
+
+        const token = jwt.sign(payload, secretKey, {expiresIn: '12h'})
 
         return res.status(200).json({ info: 'user was created succesfully', token, })
     }
