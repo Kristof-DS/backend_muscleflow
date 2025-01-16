@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken'
 
 const auth = async (req, res, next) => {
     if (!req.headers.authorization){
-        res.send.status(401).json({message:'Not authorized'})
+        res.status(401).json({message:'Not authorized'})
     }
     try {
         const token = req.headers.authorization.split(' ')[1]
