@@ -20,8 +20,5 @@ app.use('/api', reglogRouter)
 
 //User navigation on the app
 
-app.use(auth)
-
-//app.use('/api/user', userRoutes)
 
 app.listen(process.env.PORT || 3000)
