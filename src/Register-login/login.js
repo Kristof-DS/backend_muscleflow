@@ -18,7 +18,7 @@ const login = async (req, res) => {
         return res.status(403).json({ error: 'incorrect password' })
     }
     try {
-        const token = jwt.sign({ username: user[0].username, userID: user[0].id_user, usermail: user[0].email }, process.env.JWT_SECRET) //DO NOT FORGET TO CHANGE THE KEY DEPENING ON THE ENVIRONMENT
+        const token = jwt.sign({ username: user[0].username, id_user: user[0].id_user, usermail: user[0].email }, process.env.JWT_SECRET || process.env.SECRET_KEY) //DO NOT FORGET TO CHANGE THE KEY DEPENING ON THE ENVIRONMENT
         return res.send({ message: 'Success', token })
     }
     catch (err) {
