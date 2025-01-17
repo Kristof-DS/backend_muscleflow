@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken'
 
 
 const register = async (req, res) => {
-    const { email, password, username, date_of_birth, weight, height, gender } = req.body
+    const { email, password, username } = req.body
     if (!email || !password || !username) {
         return res.status(400).json({ error: 'invalid request' })
     }
@@ -24,7 +24,7 @@ const register = async (req, res) => {
     
     try {
         const hashedPassword = bcrypt.hashSync(password, 10)
-        await sql`INSERT INTO users (email, password, username, date_of_birth, weight, height, gender) VALUES (${email}, ${hashedPassword},${username}, ${date_of_birth}, ${weight}, ${height}, ${gender})`
+        await sql`INSERT INTO users (email, password, username) VALUES (${email}, ${hashedPassword}, ${username})`
 
         const user = await sql`SELECT * FROM users WHERE email = ${email}`
         const payload = {
@@ -33,9 +33,7 @@ const register = async (req, res) => {
             usermail: user[0].email
         }
 
-        const secretKey = process.env.JWT_SECRET  //Live server
-        
-        //const secretKey = process.env.SECRET_KEY    //Local server
+        const secretKey = process.env.JWT_SECRET || process.env.SECRET_KEY //Live server vs. local server
 
         const token = jwt.sign(payload, secretKey, {expiresIn: '12h'})
 
