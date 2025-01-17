@@ -28,7 +28,7 @@ const register = async (req, res) => {
 
         const user = await sql`SELECT * FROM users WHERE email = ${email}`
         const payload = {
-            userID: user[0].id_user,
+            id_user: user[0].id_user,
             username: user[0].username,
             usermail: user[0].email
         }
