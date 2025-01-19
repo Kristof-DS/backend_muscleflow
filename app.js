@@ -16,6 +16,7 @@ app.use(cors(corsOptions))
 app.use(express.json())
 
 //User registation and login
+
 app.use('/api', reglogRouter)
 
 //User navigation on the app
