@@ -7,7 +7,7 @@ const updateUserDetails = async (req, res) => {
     console.log(d_o_b, weight, height, gender)
     
     try {
-        await sql `UPDATE users SET date_of_birth = ${d_o_b}, weight = ${weight}, height = ${height}, gender = ${gender} WHERE id_user = ${id_user}`
+        await sql `UPDATE users SET date_of_birth = ${d_o_b}, weight = ${weight}, height = ${height}, gender = ${gender} WHERE id = ${id_user}`
         return res.status(200).json({message: 'user details succesfully updated'}) 
     }
     catch (err){
