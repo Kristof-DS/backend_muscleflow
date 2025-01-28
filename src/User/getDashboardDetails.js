@@ -15,8 +15,6 @@ const getDashboardDetails = async (req, res) => {
             exercises.forEach((exercise) => SavedWorkoutExercises.push(exercise))
         }
 
-
-
         const workoutsWithExercises = savedWorkouts.map(workout => {
 
             const exercises = SavedWorkoutExercises.filter(exercise => exercise.id_workout === workout.id);
