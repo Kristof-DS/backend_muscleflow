@@ -36,9 +36,9 @@ MuscleFlow is a fitness app that helps users select muscle groups and suggests e
     - Once Postgres is installed and you are ready to setup the database, you can run the sql script that you will find in the assets folder of the repo. This will create the database structure locally.
         
         Here is a screenshot of the structure of the database.
-        
     
-    ![Muscleflow DB - V2.png](attachment:f747bb5e-2fe5-4ad3-87ec-e55bc503495e:Muscleflow_DB_-_V2.png)
+    ![Muscleflow DB - V2](https://github.com/user-attachments/assets/f6e2b888-195f-4d30-8744-506f51772d49)
+    
     
 6. **Start and connect to the server locally**
     
